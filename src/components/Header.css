@@ -1,0 +1,107 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(18, 18, 18, 0.8); /* Fondo oscuro semi-transparente */
+  backdrop-filter: blur(5px); /* Efecto de desenfoque para el fondo */
+  z-index: 1000;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.2); /* Borde dorado sutil */
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-metallic-gold);
+  letter-spacing: 1px;
+  text-shadow: var(--neon-glow-gold);
+  cursor: pointer;
+}
+
+.logo img {
+  height: 40px; /* Ajusta según tu logo */
+}
+
+.navigation .nav-icon {
+  background: none;
+  border: none;
+  color: var(--color-metallic-gold);
+  font-size: 1.5rem; /* Tamaño del icono */
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navigation .nav-icon:hover {
+  color: var(--color-gold-highlight);
+  text-shadow: var(--neon-glow-gold);
+}
+
+.navigation .nav-icon svg {
+    vertical-align: middle;
+}
+
+.desktop-nav-links {
+    display: none; /* Oculto en mobile por defecto */
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  .app-header {
+    padding: 1rem 3rem;
+  }
+  .navigation .menu-icon {
+    display: none; /* Ocultar hamburguesa en desktop */
+  }
+  .desktop-nav-links {
+    display: flex;
+    align-items: center;
+  }
+  .desktop-nav-links a {
+    font-family: var(--font-body);
+    color: var(--color-text-light);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  .desktop-nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-metallic-gold);
+    transition: width 0.3s ease;
+  }
+  .desktop-nav-links a:hover {
+    color: var(--color-metallic-gold);
+  }
+  .desktop-nav-links a:hover::after {
+    width: 100%;
+  }
+  .navigation .search-icon { /* Mantener el search icon también en desktop */
+    margin-left: 1.5rem;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0.75rem 1rem;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+  .navigation .nav-icon {
+    font-size: 1.3rem;
+    margin-left: 0.8rem;
+  }
+}

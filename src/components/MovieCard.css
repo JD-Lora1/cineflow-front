@@ -1,0 +1,117 @@
+.movie-card {
+  background-color: var(--color-charcoal-black-secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0.5rem;
+  width: 200px; /* Ancho fijo para el carrusel */
+  flex-shrink: 0; /* Evita que se encoja en el flex container */
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(176, 141, 87, 0.2); /* Borde dorado muy sutil */
+}
+
+.movie-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 15px var(--color-metallic-gold);
+}
+
+.movie-card:hover .card-bottom-glow {
+  opacity: 0.7;
+  height: 60px;
+}
+
+.movie-card:hover .poster-overlay {
+  opacity: 1;
+}
+
+.movie-poster-container {
+  position: relative;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 300px; /* Altura fija para la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra sin distorsionarse */
+  display: block;
+}
+
+.poster-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.play-trailer-button {
+  background-color: var(--color-crimson-red);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: var(--neon-glow-red);
+  transition: transform 0.2s ease;
+}
+
+.play-trailer-button:hover {
+  transform: scale(1.1);
+}
+
+.movie-info {
+  padding: 1rem;
+}
+
+.movie-info h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  margin: 0 0 0.3rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Para títulos largos */
+}
+
+.movie-info p {
+  font-size: 0.8rem;
+  color: var(--color-text-medium);
+  margin: 0;
+}
+
+.card-bottom-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: radial-gradient(ellipse at bottom, var(--color-metallic-gold) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease, height 0.3s ease;
+  pointer-events: none;
+}
+
+
+@media (max-width: 768px) {
+  .movie-card {
+    width: 160px;
+  }
+  .movie-poster {
+    height: 240px;
+  }
+  .movie-info h3 {
+    font-size: 1rem;
+  }
+}

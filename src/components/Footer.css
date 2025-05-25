@@ -1,0 +1,88 @@
+.app-footer {
+  background-color: var(--color-charcoal-black-secondary);
+  color: var(--color-text-medium);
+  padding: 2rem 1rem 1rem; /* Más padding arriba */
+  text-align: center;
+  border-top: 1px solid rgba(176, 141, 87, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 1;
+}
+
+.footer-links {
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: var(--color-text-medium);
+  text-decoration: none;
+  margin: 0 0.75rem;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-metallic-gold);
+}
+
+.social-icons {
+  margin-bottom: 1rem;
+}
+
+.social-icons a {
+  color: var(--color-metallic-gold);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-size: 1.2rem; /* Placeholder, usa iconos reales */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--color-gold-highlight);
+  text-shadow: var(--neon-glow-gold);
+}
+
+.copyright {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.design-credit {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.footer-film-strip {
+  position: absolute;
+  bottom: 0px; /* Ajusta para que se vea bien */
+  left: 0;
+  width: 100%;
+  height: 20px; /* Altura de la tira */
+  background-image:
+    linear-gradient(to right, var(--color-charcoal-black) 5%, transparent 5%, transparent 95%, var(--color-charcoal-black) 95%), /* Bordes difuminados */
+    repeating-linear-gradient(
+      to right,
+      var(--color-charcoal-black-secondary) 0px, var(--color-charcoal-black-secondary) 18px, /* Espacio opaco */
+      var(--color-metallic-gold) 18px, var(--color-metallic-gold) 19px,     /* Línea dorada */
+      var(--color-charcoal-black-secondary) 19px, var(--color-charcoal-black-secondary) 21px, /* Espacio opaco */
+      var(--color-metallic-gold) 21px, var(--color-metallic-gold) 22px      /* Línea dorada */
+    ),
+    radial-gradient(circle at 5px 5px, transparent 3px, var(--color-charcoal-black-secondary) 3px), /* Perforaciones */
+    radial-gradient(circle at 5px 15px, transparent 3px, var(--color-charcoal-black-secondary) 3px);
+  background-size: auto, 40px 100%, 40px 20px, 40px 20px; /* Ajusta el tamaño del patrón de perforaciones */
+  background-repeat: repeat-x;
+  background-position: 0 0, 0 0, 0 0, 0 100%; /* Posiciona las perforaciones arriba y abajo */
+  opacity: 0.3; /* Sutil */
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-links a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+}

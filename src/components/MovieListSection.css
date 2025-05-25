@@ -1,0 +1,68 @@
+.movie-list-section {
+  padding: 3rem 0; /* Espacio vertical entre secciones */
+  position: relative;
+}
+
+/* Líneas sutiles tipo Art Deco/Proyector como fondo */
+.movie-list-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(176, 141, 87, 0.03) 10px, /* Dorado muy, muy sutil */
+      rgba(176, 141, 87, 0.03) 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgba(176, 141, 87, 0.03) 10px,
+      rgba(176, 141, 87, 0.03) 20px
+    );
+  opacity: 0.5;
+  z-index: -1; /* Detrás del contenido */
+  pointer-events: none;
+}
+
+.movie-carousel {
+  display: flex;
+  overflow-x: auto; /* Permite scroll horizontal */
+  overflow-y: hidden; /* Oculta scroll vertical si aparece */
+  padding: 1rem 0 1.5rem 1rem; /* Espacio para la sombra y scrollbar */
+  /* Para un efecto de "snap" al hacer scroll (experimental, no todos los navegadores) */
+  scroll-snap-type: x mandatory;
+}
+
+.movie-carousel > * {
+  scroll-snap-align: start; /* Alinea cada tarjeta al inicio del viewport del carrusel */
+}
+
+/* Ocultar barra de scroll pero mantener funcionalidad */
+.movie-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+.movie-carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.movie-carousel::-webkit-scrollbar-thumb {
+  background-color: rgba(176, 141, 87, 0.5); /* Dorado semi-transparente */
+  border-radius: 10px;
+}
+.movie-carousel::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-metallic-gold);
+}
+
+@media (min-width: 769px) {
+  .movie-carousel {
+    padding-left: 2rem; /* Más padding en desktop */
+    /* Podrías considerar botones de prev/next para desktop aquí */
+  }
+}
