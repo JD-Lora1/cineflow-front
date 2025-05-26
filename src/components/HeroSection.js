@@ -13,7 +13,6 @@ const HeroSection = () => {
       <div className="hero-overlay"></div>
       <div className="hero-content">
         <h1>Bienvenido a CineFlow</h1>
-        <p>Tu Butaca a Otra Dimensión.</p>
         <button className="cta-button">
           Ver Cartelera
           <span className="button-shine"></span>

@@ -1,0 +1,420 @@
+/* src/components/admin/AdminLayout.css */
+
+/* -------------------------------------------------------------------------- */
+/*                          VARIABLES Y ESTILOS BASE                          */
+/* -------------------------------------------------------------------------- */
+/* Asegúrate de que tus variables de color estén definidas en App.css o un archivo global
+   --color-charcoal-black, --color-charcoal-black-secondary, --color-charcoal-dark-grey,
+   --color-crimson-red, --color-metallic-gold, --color-gold-highlight,
+   --color-text-light, --color-text-medium, --color-border-subtle, --color-border-medium,
+   --font-admin-primary-display, --font-admin-body, --font-display (para el logo)
+*/
+
+body.admin-active {
+  font-family: var(--font-admin-body, 'Inter', sans-serif);
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A); /* Fondo para toda la página admin */
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               LAYOUT PRINCIPAL                             */
+/* -------------------------------------------------------------------------- */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  color: var(--color-text-light, #E0E0E0);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   SIDEBAR                                  */
+/* -------------------------------------------------------------------------- */
+.admin-sidebar {
+  width: 260px;
+  background-color: var(--color-charcoal-black, #121212); /* Un poco más oscuro que el contenido */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+  flex-shrink: 0; /* Evitar que el sidebar se encoja */
+  transition: width 0.3s ease; /* Para futuras animaciones si se colapsa */
+}
+
+.admin-logo {
+  font-family: var(--font-admin-body, 'Inter', sans-serif);
+  font-size: 1.8rem;
+  color: var(--color-metallic-gold, #B08D57);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+  font-weight: normal;
+}
+
+.admin-logo img {
+  max-width: 80%;
+  margin-bottom: 0.5rem;
+  display: block; /* Para centrar con margin auto si es necesario */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-nav li a {
+  display: flex; /* Para alinear iconos si los añades */
+  align-items: center;
+  gap: 0.75rem; /* Espacio entre icono y texto del enlace */
+  font-family: var(--font-admin-body, 'Inter', sans-serif);
+  font-weight: 500;
+  color: var(--color-text-medium, #A0A0A0);
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  margin-bottom: 0.3rem;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.admin-nav li a:hover {
+  background-color: var(--color-charcoal-dark-grey, #242424);
+  color: var(--color-gold-highlight, #cca068);
+  transform: translateX(4px);
+}
+
+.admin-nav li a.active { /* Para NavLink */
+  background-color: var(--color-metallic-gold, #B08D57);
+  color: var(--color-charcoal-black, #121212);
+  font-weight: 600;
+}
+.admin-nav li a.active:hover {
+  transform: translateX(0); /* No mover el activo en hover */
+}
+
+.admin-sidebar-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.1));
+  text-align: center;
+}
+
+.admin-sidebar-footer a {
+  font-family: var(--font-admin-body, 'Inter', sans-serif);
+  color: var(--color-text-medium, #A0A0A0);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.admin-sidebar-footer a:hover {
+  color: var(--color-metallic-gold, #B08D57);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              CONTENIDO PRINCIPAL                           */
+/* -------------------------------------------------------------------------- */
+.admin-main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; /* Prevenir scroll horizontal en la página principal */
+  min-width: 0; /* Permite que el contenedor flex se encoja */
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A);
+}
+
+.admin-main-header {
+  padding: 1.25rem 2rem;
+  background-color: var(--color-charcoal-black, #121212); /* Header un poco más oscuro */
+  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinear contenido del header a la derecha (ej: user menu) */
+  flex-shrink: 0; /* No encoger el header */
+  min-height: 60px; /* Altura mínima del header */
+}
+/* El h2 general del header se quitó, cada página tendrá su título */
+
+
+.admin-page-content {
+  padding: 2rem;
+  flex-grow: 1;
+  overflow-y: auto; /* Scroll vertical para el contenido */
+  font-family: var(--font-admin-body, 'Inter', sans-serif);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                         COMPONENTES COMUNES DE ADMIN                       */
+/* -------------------------------------------------------------------------- */
+
+/* --- Botones --- */
+.admin-button {
+  font-family: var(--font-admin-body, 'Inter', sans-serif);
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  display: inline-flex; /* Para alinear iconos si se añaden */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.admin-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.admin-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.admin-button-primary {
+  background-color: var(--color-metallic-gold, #B08D57);
+  color: var(--color-charcoal-black, #121212);
+}
+.admin-button-primary:hover {
+  background-color: var(--color-gold-highlight, #cca068);
+}
+
+.admin-button-secondary {
+  background-color: var(--color-charcoal-dark-grey, #242424);
+  color: var(--color-text-light, #E0E0E0);
+  border: 1px solid var(--color-border-medium, rgba(176, 141, 87, 0.3));
+}
+.admin-button-secondary:hover {
+  border-color: var(--color-metallic-gold, #B08D57);
+  color: var(--color-metallic-gold, #B08D57);
+  background-color: rgba(176, 141, 87, 0.05);
+}
+
+/* --- Inputs y Textareas --- */
+.admin-input, .admin-textarea, .admin-select {
+  font-family: var(--font-admin-body, 'Inter', sans-serif);
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--color-charcoal-dark-grey, #242424);
+  border: 1px solid var(--color-border-medium, rgba(176, 141, 87, 0.3));
+  border-radius: 6px;
+  color: var(--color-text-light, #E0E0E0);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.admin-input::placeholder, .admin-textarea::placeholder {
+  color: var(--color-text-medium, #A0A0A0);
+  opacity: 0.7;
+}
+.admin-input:focus, .admin-textarea:focus, .admin-select:focus {
+  outline: none;
+  border-color: var(--color-metallic-gold, #B08D57);
+  box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.25);
+  background-color: var(--color-charcoal-black, #121212);
+}
+.admin-textarea {
+  min-height: 100px; /* Altura mínima para textareas */
+  resize: vertical; /* Permitir redimensionar verticalmente */
+}
+
+/* --- Tablas --- */
+.admin-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+  border-radius: 8px;
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A);
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 650px; /* Ancho mínimo para que la tabla se vea bien antes de scrollear */
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--font-admin-body, 'Inter', sans-serif);
+}
+
+.admin-table th, .admin-table td {
+  padding: 0.9rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+  vertical-align: middle;
+  white-space: nowrap; /* Evitar que el contenido se rompa, forzando scroll si es necesario */
+}
+
+.admin-table th {
+  background-color: var(--color-charcoal-dark-grey, #242424);
+  color: var(--color-text-light, #E0E0E0);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky; /* Para que los headers se queden fijos al hacer scroll horizontal */
+  top: 0;
+  z-index: 1; /* Para que estén sobre el contenido de las celdas */
+}
+
+.admin-table td {
+  font-size: 0.875rem;
+  color: var(--color-text-medium, #A0A0A0);
+}
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+.admin-table tr:hover td {
+  background-color: var(--color-charcoal-dark-grey, #242424);
+}
+
+.admin-table .action-buttons button,
+.admin-table .action-buttons a {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem; /* Iconos un poco más grandes */
+  background: none;
+  border: none;
+  color: var(--color-text-medium, #A0A0A0);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.admin-table .action-buttons button:last-child,
+.admin-table .action-buttons a:last-child {
+  margin-right: 0;
+}
+.admin-table .action-buttons button:hover,
+.admin-table .action-buttons a:hover {
+  color: var(--color-gold-highlight, #cca068);
+  background-color: rgba(176, 141, 87, 0.1);
+}
+.admin-table .action-buttons .delete-btn:hover {
+  color: var(--color-crimson-red, #DC143C);
+  background-color: rgba(220, 20, 60, 0.1);
+}
+
+.admin-table td img {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  vertical-align: middle;
+  border: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+}
+
+/* -------------------------------------------------------------------------- */
+/*                           ESTILOS RESPONSIVE (MÓVIL)                       */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 992px) { /* Un breakpoint intermedio para ajustar el sidebar antes */
+  .admin-sidebar {
+    width: 220px; /* Sidebar un poco más estrecho */
+  }
+  .admin-logo {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+  .admin-nav li a {
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .admin-layout {
+    flex-direction: column; /* Apilar sidebar y contenido */
+  }
+
+  .admin-sidebar {
+    width: 100%; /* Sidebar ocupa todo el ancho */
+    flex-direction: row; /* Elementos del sidebar en fila */
+    align-items: center; /* Centrar verticalmente los elementos del sidebar */
+    padding: 0.75rem 1rem;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+    overflow-x: auto; /* Scroll horizontal para la navegación del sidebar si no cabe */
+    -webkit-overflow-scrolling: touch;
+    order: -1; /* Poner el sidebar arriba */
+    height: auto; /* Altura automática */
+    min-height: 60px; /* Altura mínima del "header" móvil */
+  }
+
+  .admin-logo {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+    margin-right: auto; /* Empujar la navegación a la derecha */
+    white-space: nowrap; /* Evitar que el logo se rompa */
+  }
+
+  .admin-nav {
+    display: flex; /* Los ul ya son flex por defecto, esto es para el wrapper .admin-nav */
+  }
+
+  .admin-nav ul {
+    display: flex; /* Hacer que los li se pongan en fila */
+    flex-direction: row;
+    gap: 0.25rem; /* Espacio entre enlaces de navegación */
+  }
+
+  .admin-nav li a {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0; /* No hay margen inferior entre items en fila */
+    white-space: nowrap; /* Evitar que el texto del enlace se rompa */
+  }
+  .admin-nav li a:hover {
+      transform: translateX(0); /* No mover en hover en móvil */
+  }
+
+
+  .admin-sidebar-footer {
+    display: none; /* Ocultar footer del sidebar en móvil */
+  }
+
+  .admin-main-content {
+    width: 100%; /* Contenido principal ocupa todo el ancho */
+  }
+
+  .admin-main-header { /* El header principal del contenido */
+    padding: 1rem;
+    min-height: 50px;
+  }
+  /* Si tienes un título en .admin-main-header, ajústalo */
+
+
+  .admin-page-content {
+    padding: 1rem;
+  }
+
+  .admin-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .admin-input, .admin-textarea, .admin-select {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .admin-table th, .admin-table td {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.8rem;
+    white-space: normal; /* Permitir que el texto se ajuste en celdas en móvil si es muy largo */
+  }
+   .admin-table th { /* Los headers fijos pueden ser problemáticos en móvil si el scroll es vertical y horizontal */
+    position: static;
+  }
+  .admin-table td img {
+    width: 30px;
+    height: 45px;
+  }
+
+  /* Si tienes formularios con columnas (form-grid), hazlos de una columna */
+  .admin-form .form-grid {
+      grid-template-columns: 1fr !important;
+  }
+}

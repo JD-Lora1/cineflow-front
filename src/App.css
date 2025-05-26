@@ -41,6 +41,9 @@
 /* Importa tus fuentes personalizadas aquí si las tienes alojadas localmente o usa @import de Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&display=swap');
 
+/* Para el Panel de Administración */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Condensed:wght@700&display=swap');
+
 :root {
   --color-charcoal-black: #121212; /* Un negro ligeramente más suave que #000 */
   --color-charcoal-black-secondary: #1A1A1A;
@@ -52,13 +55,16 @@
 
   --font-display: 'Bebas Neue', cursive; /* Para títulos grandes, logo */
   --font-body: 'Montserrat', sans-serif; /* Para cuerpo de texto y UI */
+  
+  --font-admin-primary-display: 'Roboto Condensed', sans-serif; /* Títulos principales en Admin */
+  --font-admin-body: 'Inter', sans-serif;                       /* Cuerpo de texto y UI en Admin */
 
   --neon-glow-red: 0 0 5px var(--color-crimson-red),
                    0 0 10px var(--color-crimson-red),
                    0 0 15px var(--color-crimson-red);
   --neon-glow-gold: 0 0 5px var(--color-gold-highlight),
                     0 0 10px var(--color-gold-highlight),
-                    0 0 15px var(--color-gold-highlight);
+                    0 0 15px var(--color-gold-highlight),
 }
 
 body {

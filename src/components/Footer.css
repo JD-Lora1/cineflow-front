@@ -80,6 +80,34 @@
   z-index: 0;
 }
 
+.social-icons {
+  margin-bottom: 1rem;
+  display: flex; /* Para alinear los iconos horizontalmente */
+  justify-content: center; /* Centrar los iconos */
+  gap: 1rem; /* Espacio entre iconos */
+}
+
+.social-icons a {
+  color: var(--color-metallic-gold, #B08D57); /* Color del icono */
+  text-decoration: none;
+  display: inline-flex; /* Para que el SVG se comporte bien dentro del 'a' */
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a svg {
+  width: 22px; /* Tamaño del icono SVG */
+  height: 22px; /* Tamaño del icono SVG */
+  fill: currentColor; /* El SVG tomará el color del 'a' padre */
+}
+
+.social-icons a:hover {
+  color: var(--color-gold-highlight, #FFD700); /* Color al hacer hover */
+  transform: scale(1.15); /* Pequeño efecto de zoom al hacer hover */
+}
+
+
 @media (max-width: 768px) {
   .footer-links a {
     display: block;

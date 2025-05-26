@@ -34,15 +34,65 @@
 
 .movie-carousel {
   display: flex;
-  overflow-x: auto; /* Permite scroll horizontal */
-  overflow-y: hidden; /* Oculta scroll vertical si aparece */
-  padding: 1rem 0 1.5rem 1rem; /* Espacio para la sombra y scrollbar */
-  /* Para un efecto de "snap" al hacer scroll (experimental, no todos los navegadores) */
-  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 0 2.5rem 1rem;
+  scroll-snap-type: x mandatory; /* o x proximity si prefieres un snap menos estricto */
+  -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
-.movie-carousel > * {
-  scroll-snap-align: start; /* Alinea cada tarjeta al inicio del viewport del carrusel */
+/* ---- CAMBIOS AQUÍ ---- */
+.movie-carousel > .movie-card {
+  scroll-snap-align: center; /* O start, según prefieras el alineamiento del snap */
+  flex: 0 0 auto; /* Evita que las tarjetas se estiren o encojan */
+  margin: 0 10px; /* Espacio entre tarjetas */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transición para el hover */
+  /* Quitar: opacity: 0.7; */
+  /* Quitar: transform: scale(0.9); */
+  /* Ahora por defecto tendrán opacidad 1 y escala 1 */
+}
+
+/* Estilos para la tarjeta "central" (esto es difícil de lograr solo con CSS scroll) */
+/* Lo que podemos hacer es un hover general */
+.movie-carousel:hover > .movie-card:hover,
+.movie-carousel > .movie-card:focus-within { /* Cuando un elemento dentro tiene foco */
+  opacity: 1;
+  transform: scale(1.05) translateY(-5px); /* Resaltar un poco más al hacer hover */
+  z-index: 10; /* Para que esté por encima de otras al transformarse */
+}
+
+/* Botones de Navegación (Ejemplo Básico) */
+.carousel-nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-calc(50% + 20px)); /* Ajustar verticalmente para estar sobre las tarjetas */
+  background-color: rgba(26, 26, 26, 0.7);
+  color: var(--color-metallic-gold);
+  border: 1px solid var(--color-metallic-gold);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.carousel-nav-button:hover {
+  background-color: var(--color-metallic-gold);
+  color: var(--color-charcoal-black);
+}
+
+.carousel-nav-button.prev {
+  left: 10px;
+}
+
+.carousel-nav-button.next {
+  right: 10px;
 }
 
 /* Ocultar barra de scroll pero mantener funcionalidad */
@@ -59,6 +109,7 @@
 .movie-carousel::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-metallic-gold);
 }
+
 
 @media (min-width: 769px) {
   .movie-carousel {

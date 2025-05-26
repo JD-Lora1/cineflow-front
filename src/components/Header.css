@@ -1,3 +1,10 @@
+/* src/components/Header.css */
+
+/* Estilos globales para prevenir scroll cuando el menú está abierto */
+body.no-scroll {
+  overflow: hidden;
+}
+
 .app-header {
   position: fixed;
   top: 0;
@@ -6,102 +13,224 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: rgba(18, 18, 18, 0.8); /* Fondo oscuro semi-transparente */
-  backdrop-filter: blur(5px); /* Efecto de desenfoque para el fondo */
+  padding: 1rem 2rem; /* Padding base para móvil y desktop pequeño */
+  background-color: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(5px);
   z-index: 1000;
-  border-bottom: 1px solid rgba(176, 141, 87, 0.2); /* Borde dorado sutil */
+  border-bottom: 1px solid rgba(176, 141, 87, 0.2);
+  min-height: 60px; /* Altura mínima */
 }
 
 .logo {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 1.8rem; /* Ajustado para mejor consistencia móvil/desktop */
   color: var(--color-metallic-gold);
   letter-spacing: 1px;
   text-shadow: var(--neon-glow-gold);
   cursor: pointer;
+  text-decoration: none; /* Si el logo es un Link */
+}
+.logo:hover {
+    color: var(--color-gold-highlight);
 }
 
 .logo img {
-  height: 40px; /* Ajusta según tu logo */
+  height: 35px; /* Ajustado */
+  vertical-align: middle; /* Para alinear con texto si hay */
 }
 
-.navigation .nav-icon {
+.navigation {
+  display: flex; /* Para alinear los iconos de nav y desktop-nav-links */
+  align-items: center;
+}
+
+.navigation .nav-icon { /* Estilo base para iconos de búsqueda y menú */
   background: none;
   border: none;
   color: var(--color-metallic-gold);
-  font-size: 1.5rem; /* Tamaño del icono */
-  margin-left: 1rem;
+  padding: 0.5rem; /* Añadir padding para área de click más grande */
+  margin-left: 0.5rem; /* Espacio base */
   cursor: pointer;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: inline-flex; /* Para alinear SVG correctamente */
+  align-items: center;
+  justify-content: center;
 }
-
+.navigation .nav-icon svg {
+  width: 22px; /* Tamaño consistente para SVGs */
+  height: 22px;
+}
 .navigation .nav-icon:hover {
   color: var(--color-gold-highlight);
-  text-shadow: var(--neon-glow-gold);
+  transform: scale(1.1);
 }
 
-.navigation .nav-icon svg {
-    vertical-align: middle;
+
+/* Icono de búsqueda (puede ser siempre visible o parte del menú móvil) */
+.navigation .search-icon {
+  /* Estilos específicos si son necesarios */
 }
 
+/* Icono de Menú Hamburguesa (visible solo en móvil por media query) */
+.navigation .menu-icon-mobile {
+  display: none; /* Oculto por defecto, se muestra en la media query */
+  z-index: 1101; /* Por encima del overlay */
+}
+/* Aplicar color activo si el menú está abierto */
+.app-header.mobile-menu-active .navigation .menu-icon-mobile {
+  color: var(--color-gold-highlight);
+}
+
+
+/* Navegación para Desktop (oculta en móvil por defecto) */
 .desktop-nav-links {
-    display: none; /* Oculto en mobile por defecto */
+  display: none; /* Se mostrará en la media query de desktop */
+  align-items: center;
 }
-
-/* Desktop Styles */
-@media (min-width: 769px) {
-  .app-header {
-    padding: 1rem 3rem;
-  }
-  .navigation .menu-icon {
-    display: none; /* Ocultar hamburguesa en desktop */
-  }
-  .desktop-nav-links {
-    display: flex;
-    align-items: center;
-  }
-  .desktop-nav-links a {
-    font-family: var(--font-body);
-    color: var(--color-text-light);
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-size: 1rem;
-    position: relative;
-    transition: color 0.3s ease;
-  }
-  .desktop-nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--color-metallic-gold);
-    transition: width 0.3s ease;
-  }
-  .desktop-nav-links a:hover {
+.desktop-nav-links a {
+  font-family: var(--font-body);
+  color: var(--color-text-light);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 0.95rem; /* Ligeramente ajustado */
+  padding: 0.5rem 0.25rem; /* Padding para dar espacio al subrayado */
+  position: relative;
+  transition: color 0.3s ease;
+}
+.desktop-nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0px; /* Alineado con el padding inferior del 'a' */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-metallic-gold);
+  transition: width 0.3s ease;
+}
+.desktop-nav-links a:hover {
+  color: var(--color-metallic-gold);
+}
+.desktop-nav-links a:hover::after {
+  width: 100%;
+}
+.desktop-nav-links a.active { /* Estilo para NavLink activo */
     color: var(--color-metallic-gold);
-  }
-  .desktop-nav-links a:hover::after {
+}
+.desktop-nav-links a.active::after {
     width: 100%;
-  }
-  .navigation .search-icon { /* Mantener el search icon también en desktop */
-    margin-left: 1.5rem;
-  }
 }
 
-/* Mobile Styles */
+
+/* Enlace a Admin en Desktop */
+.admin-link-desktop {
+  margin-left: 2rem !important;
+  padding: 0.5rem 1rem !important; /* Más padding para apariencia de botón */
+  border: 1px solid var(--color-metallic-gold);
+  border-radius: 5px;
+  color: var(--color-metallic-gold) !important;
+  transition: background-color 0.3s ease, color 0.3s ease !important;
+  font-size: 0.9rem !important; /* Consistencia con otros botones */
+}
+.admin-link-desktop:hover {
+  background-color: var(--color-metallic-gold);
+  color: var(--color-charcoal-black) !important;
+}
+.admin-link-desktop::after { /* No queremos el subrayado en este botón */
+  display: none !important;
+}
+
+
+/* Menú Desplegable Móvil */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 75%; /* Ancho del menú */
+  max-width: 320px; /* Ancho máximo */
+  height: 100vh;
+  background-color: var(--color-charcoal-black);
+  padding: 5rem 1.5rem 2rem; /* Más padding superior para no solapar con header */
+  box-shadow: -3px 0 10px rgba(0,0,0,0.25);
+  z-index: 1050;
+  transition: right 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transición con "rebote" */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto; /* Por si hay muchos enlaces */
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu a {
+  font-family: var(--font-display);
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-size: 1.4rem;
+  padding: 0.9rem 0;
+  width: 100%;
+  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.1));
+  transition: color 0.2s ease;
+}
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+.mobile-menu a:hover,
+.mobile-menu a.active { /* Estilo para NavLink activo */
+  color: var(--color-metallic-gold);
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6); /* Overlay un poco más oscuro */
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Asegurar que la visibilidad cambie después */
+}
+.mobile-menu.open + .mobile-menu-overlay {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s; /* Aplicar inmediatamente al abrir */
+}
+
+
+/* --- Media Queries --- */
+
+/* Estilos para Móvil y Tablet Pequeña (hasta 768px) */
 @media (max-width: 768px) {
   .app-header {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1rem; /* Padding más pequeño para móvil */
   }
   .logo {
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Logo más pequeño */
   }
-  .navigation .nav-icon {
-    font-size: 1.3rem;
-    margin-left: 0.8rem;
+  .navigation .desktop-nav-links {
+    display: none; /* Ocultar enlaces de desktop */
+  }
+  .navigation .menu-icon-mobile {
+    display: inline-flex; /* Mostrar icono de hamburguesa */
+  }
+  .navigation .nav-icon { /* Ajuste general para iconos en móvil */
+      margin-left: 0.25rem;
+  }
+}
+
+/* Estilos para Desktop (desde 769px) */
+@media (min-width: 769px) {
+  .app-header {
+    padding: 1rem 3rem; /* Padding para desktop */
+  }
+  .navigation .menu-icon-mobile {
+    display: none; /* Ocultar icono de hamburguesa */
+  }
+  .desktop-nav-links {
+    display: flex; /* Mostrar enlaces de desktop */
   }
 }

@@ -1,0 +1,32 @@
+.admin-movie-list-screen .admin-screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.admin-movie-list-screen .admin-screen-header h1 {
+  font-family: var(--font-display, 'Bebas Neue', cursive);
+  color: var(--color-text-light);
+  margin: 0;
+  font-size: 2rem;
+}
+
+.status-badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-active {
+  background-color: rgba(76, 175, 80, 0.2); /* Verde suave */
+  color: #4CAF50;
+}
+
+.status-inactive {
+  background-color: rgba(220, 20, 60, 0.2); /* Rojo carmesí suave */
+  color: var(--color-crimson-red, #DC143C);
+}

@@ -1,0 +1,121 @@
+.admin-movie-form-screen .admin-screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.admin-movie-form-screen .admin-screen-header h1 {
+  font-family: var(--font-display, 'Bebas Neue', cursive);
+  color: var(--color-text-light);
+  margin: 0;
+  font-size: 2rem;
+}
+
+.admin-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: var(--color-text-medium);
+}
+.admin-form label small {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.admin-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: 2rem; /* Espacio entre columnas/filas */
+}
+
+@media (min-width: 768px) { /* Dos columnas en pantallas más grandes */
+    .admin-form .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+.poster-preview-container {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  max-width: 200px; /* Ajusta según necesites */
+  border: 1px solid rgba(176, 141, 87, 0.3);
+  padding: 5px;
+  background-color: var(--color-charcoal-black, #121212);
+  border-radius: 4px;
+}
+
+.poster-preview {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+.form-actions {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.form-field-inline {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Estilo para el switch toggle (copiado y adaptado de W3Schools) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px; /* Ancho reducido */
+  height: 28px; /* Alto reducido */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #4a4a4a; /* Gris oscuro para apagado */
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px; /* Reducido */
+  width: 20px;  /* Reducido */
+  left: 4px;    /* Ajustado */
+  bottom: 4px;  /* Ajustado */
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--color-crimson-red, #DC143C);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-crimson-red, #DC143C);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px); /* Ajustado */
+}
+
+.slider.round {
+  border-radius: 28px; /* Ajustado */
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

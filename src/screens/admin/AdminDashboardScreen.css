@@ -1,0 +1,146 @@
+/* src/screens/admin/AdminDashboardScreen.css */
+
+.dashboard-page-header {
+  margin-bottom: 2rem;
+}
+
+.page-title { /* Estilo para el título principal de la página */
+  font-family: var(--font-admin-primary-display);
+  font-weight: 700;
+  font-size: 2rem; /* Consistente con .admin-section-title */
+  color: var(--color-text-light);
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 0.5px;
+}
+
+.page-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-medium);
+  margin: 0;
+  font-weight: 400; /* Asegurar que no sea muy bold */
+}
+
+.stats-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background-color: var(--color-charcoal-black-secondary); /* Fondo de tarjeta */
+  padding: 1.25rem 1.5rem; /* Ajustar padding */
+  border-radius: 8px;
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex; /* Para alinear icono y texto */
+  align-items: center; /* Alinear verticalmente */
+  gap: 1rem; /* Espacio entre icono y texto */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative; /* Para el enlace absoluto si se quiere */
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 0 10px rgba(176, 141, 87, 0.08);
+}
+
+.stat-card-icon-wrapper {
+  background-color: var(--color-charcoal-dark-grey); /* Fondo para el icono */
+  color: var(--color-metallic-gold);
+  padding: 0.75rem; /* Padding alrededor del icono */
+  border-radius: 6px; /* Redondear el contenedor del icono */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Evitar que el icono se encoja */
+}
+.stat-card-icon-wrapper svg { /* Asegurar que el SVG herede el color */
+    fill: currentColor;
+}
+
+
+.stat-info h3 {
+  font-family: var(--font-admin-body); /* Cambiar a Inter para números */
+  font-weight: 700; /* Más bold para los números */
+  font-size: 2.2rem; /* Tamaño para los números */
+  color: var(--color-text-light);
+  margin: 0 0 0.1rem 0;
+  line-height: 1;
+}
+
+.stat-info p {
+  font-size: 0.8rem; /* Etiqueta más pequeña */
+  color: var(--color-text-medium);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+
+.stat-card-link {
+  /* Se puede quitar si el hover de la tarjeta es suficiente o ponerlo absoluto */
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--color-text-medium);
+  text-decoration: none;
+  font-weight: 500;
+  opacity: 0; /* Oculto por defecto */
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+.stat-card:hover .stat-card-link {
+    opacity: 1; /* Mostrar al hacer hover en la tarjeta */
+}
+.stat-card-link:hover {
+  color: var(--color-gold-highlight);
+}
+
+
+.quick-actions-section { /* Renombrado para claridad */
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--color-charcoal-black-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.section-heading { /* Estilo para títulos de sección como "Accesos Rápidos" */
+  font-family: var(--font-admin-primary-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-gold-highlight); /* Dorado para estos subtítulos */
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.3px;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.quick-actions-buttons .admin-button {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.7rem;
+  }
+  .stat-card {
+    flex-direction: column; /* Apilar icono y texto en móvil */
+    align-items: flex-start; /* Alinear al inicio */
+    gap: 0.5rem;
+  }
+  .stat-card-icon-wrapper {
+    margin-bottom: 0.5rem;
+  }
+  .stat-info h3 {
+    font-size: 1.8rem;
+  }
+  .stat-card-link { /* Asegurar que el link sea visible */
+    position: static;
+    opacity: 1;
+    margin-top: 0.75rem;
+  }
+}
