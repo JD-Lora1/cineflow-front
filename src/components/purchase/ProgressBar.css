@@ -1,0 +1,99 @@
+/* src/components/purchase/ProgressBar.css */
+.progress-bar-container {
+  display: flex;
+  justify-content: space-between; /* O space-around */
+  align-items: flex-start; /* Alinear items al inicio verticalmente */
+  padding: 1rem 0;
+  /* border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15)); */
+  margin-bottom: 1.5rem;
+  max-width: 800px; /* Limitar ancho de la barra */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--color-text-medium, #A0A0A0); /* Color por defecto */
+  /* color: #888; */ /* Si fondo claro */
+  position: relative; /* Para el conector */
+  flex: 1; /* Distribuir espacio */
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--color-charcoal-dark-grey, #333); /* Fondo del círculo */
+  /* background-color: #ccc; */ /* Si fondo claro */
+  color: var(--color-text-medium, #777); /* Color del número */
+  /* color: #fff; */ /* Si fondo claro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid var(--color-charcoal-dark-grey, #333);
+  /* border: 2px solid #ccc; */ /* Si fondo claro */
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.step-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+}
+
+.progress-step.active .step-number {
+  background-color: var(--color-metallic-gold, #B08D57);
+  border-color: var(--color-metallic-gold, #B08D57);
+  color: var(--color-charcoal-black, #121212); /* Texto oscuro sobre dorado */
+}
+.progress-step.active .step-label {
+  color: var(--color-metallic-gold, #B08D57); /* Texto del label activo */
+  font-weight: bold;
+}
+.progress-step.current .step-label { /* Estilo adicional para el paso actual */
+    /* Puedes añadir un subrayado o hacerlo más bold si es diferente de 'active' */
+}
+
+
+.progress-connector {
+  flex-grow: 1;
+  height: 2px;
+  background-color: var(--color-charcoal-dark-grey, #333);
+  /* background-color: #ccc; */ /* Si fondo claro */
+  margin: 0 0.5rem; /* Espacio entre conector y step */
+  align-self: center; /* Centrar verticalmente con el step-number */
+  position: relative;
+  top: -17px; /* Alinear con el centro del círculo del número */
+}
+.progress-step.active + .progress-connector {
+  background-color: var(--color-metallic-gold, #B08D57); /* Conector activo */
+}
+
+/* Media Queries para ProgressBar */
+@media (max-width: 768px) {
+  .progress-bar-container {
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+  }
+  .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+    border-width: 1px;
+    margin-bottom: 0.3rem;
+    top: 0; /* Resetear si el conector se ajusta diferente */
+  }
+  .step-label {
+    font-size: 0.75rem;
+  }
+  .progress-connector {
+      top: -13px; /* Ajustar alineación del conector */
+      margin: 0 0.25rem;
+  }
+}

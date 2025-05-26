@@ -1,0 +1,153 @@
+/* src/components/purchase/SeatMap.css */
+
+:root { /* Definición de colores de asientos, pueden ir en App.css si son globales */
+  --seat-available-color: #5F95E7;       /* Azul tradicional */
+  --seat-selected-color: #FFBF00;        /* Amarillo/Dorado para selección */
+  --seat-occupied-color: #c82828;        /* Gris oscuro para ocupado */
+  --seat-disabled-color: #640c07;        /* Gris más oscuro para deshabilitado */
+  --seat-preferential-color: #8A3FFC;    /* Morado para preferente */
+  --seat-wheelchair-color: #BDBDBD;      /* Gris claro para silla de ruedas */
+
+  /* Alternativas con tu paleta CineFlow (si prefieres estos) */
+  /* --seat-available-color: var(--color-charcoal-dark-grey, #242424);
+  --seat-selected-color: var(--color-crimson-red, #DC143C);
+  --seat-occupied-color: #404040;
+  --seat-disabled-color: #202020;
+  --seat-preferential-color: var(--color-metallic-gold, #B08D57);
+  --seat-wheelchair-color: var(--color-text-medium, #A0A0A0); */
+}
+
+
+.seat-map-container {
+  margin: 2rem auto; /* Centrar y dar espacio */
+  padding: 1rem;
+  background-color: var(--color-charcoal-black, #121212); /* Fondo del área del mapa */
+  /* background-color: #e9e9e9; */ /* Si fondo general claro */
+  border-radius: 8px;
+  /* overflow-x: auto; */ /* Si el mapa es más ancho que el contenedor */
+  /* -webkit-overflow-scrolling: touch; */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar la pantalla y las filas */
+}
+
+.screen-indicator {
+  width: 60%; /* Ancho de la "pantalla" */
+  max-width: 400px;
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: bold;
+  color: var(--color-text-medium, #A0A0A0);
+  /* color: #666; */ /* Si fondo claro */
+  background-color: var(--color-charcoal-dark-grey, #333);
+  /* background-color: #ddd; */ /* Si fondo claro */
+  border-radius: 3px;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+.seats-grid {
+  display: flex;
+  flex-direction: column; /* Apilar filas */
+  gap: 5px; /* Espacio muy pequeño entre filas */
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar asientos en la fila */
+  gap: 5px; /* Espacio muy pequeño entre asientos y labels de fila */
+}
+
+.row-label {
+  font-family: var(--font-body);
+  color: var(--color-text-medium, #A0A0A0);
+  /* color: #777; */ /* Si fondo claro */
+  font-size: 0.8rem;
+  font-weight: bold;
+  width: 20px; /* Ancho para la etiqueta de fila */
+  text-align: center;
+}
+
+.seats-in-row {
+  display: flex;
+  gap: 5px; /* Espacio entre asientos */
+}
+
+.seat {
+  width: 28px;  /* Ancho del asiento */
+  height: 24px; /* Alto del asiento */
+  border-radius: 5px 5px 2px 2px; /* Forma de asiento de cine */
+  border: 1px solid rgba(0,0,0,0.2); /* Borde sutil para definición */
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  background-color: var(--seat-available-color); /* Color por defecto */
+  display: inline-block; /* Evitar espacio extra */
+}
+
+/* Aplicar colores basados en la clase (que viene del tipo de asiento) */
+.seat.A { background-color: var(--seat-available-color); }
+.seat.O { background-color: var(--seat-occupied-color); cursor: not-allowed; }
+.seat.D { background-color: var(--seat-disabled-color); cursor: not-allowed; }
+.seat.P { background-color: var(--seat-preferential-color); }
+.seat.W { background-color: var(--seat-wheelchair-color); }
+/* Estado seleccionado */
+.seat.selected {
+  background-color: var(--seat-selected-color) !important; /* !important para anular otros */
+  box-shadow: 0 0 8px var(--seat-selected-color);
+  transform: scale(1.1);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.seat:not(.disabled-interaction):not(.O):not(.D):hover { /* Hover solo en asientos clickeables */
+  transform: scale(1.15);
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+.seat.disabled-interaction { /* Para asientos que no son seleccionables por su tipo base */
+    cursor: not-allowed;
+    opacity: 0.8; /* Ligeramente más opacos */
+}
+
+
+/* Media Queries para SeatMap */
+@media (max-width: 768px) {
+  .seat-map-container {
+    padding: 0.5rem;
+    margin: 1rem 0; /* Menos margen en móvil */
+    /* Si el mapa es muy ancho, es mejor habilitar scroll en su wrapper */
+    width: 100%; /* Para que overflow-x funcione si se añade */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .seats-grid {
+    /* Si se usa overflow-x en seat-map-container,
+       el seats-grid puede necesitar un min-width para forzar el scroll */
+    /* min-width: 500px; */ /* Ejemplo */
+  }
+  .seat {
+    width: 24px;
+    height: 20px;
+    border-radius: 4px 4px 1px 1px;
+  }
+  .row-label {
+    font-size: 0.7rem;
+    width: 15px;
+  }
+  .screen-indicator {
+    width: 80%;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .seat {
+    width: 20px;
+    height: 16px;
+  }
+  .seats-in-row, .seat-row {
+    gap: 3px; /* Espacio aún más pequeño */
+  }
+}

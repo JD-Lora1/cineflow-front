@@ -1,116 +1,200 @@
+/* src/components/Footer.css */
+
 .app-footer {
-  background-color: var(--color-charcoal-black-secondary);
-  color: var(--color-text-medium);
-  padding: 2rem 1rem 1rem; /* Más padding arriba */
-  text-align: center;
-  border-top: 1px solid rgba(176, 141, 87, 0.2);
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A);
+  color: var(--color-text-medium, #A0A0A0);
+  padding: 3rem 1.5rem 0; /* Padding superior, sin padding inferior aquí */
+  border-top: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Para la tira de película */
+  font-family: var(--font-body);
 }
 
-.footer-content {
-    position: relative;
-    z-index: 1;
+.footer-main-content {
+  max-width: 1200px; /* Ancho máximo del contenido del footer */
+  margin: 0 auto; /* Centrar */
 }
 
-.footer-links {
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas responsivas */
+  gap: 2rem; /* Espacio entre columnas */
+  margin-bottom: 2.5rem;
+}
+
+.footer-column h4 {
+  font-family: var(--font-body); /* O var(--font-body) con font-weight: bold; */
+  color: var(--color-text-light, #EAEAEA);
+  font-size: 1.2rem; /* Tamaño del título de columna */
   margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 0.5rem;
 }
 
-.footer-links a {
-  color: var(--color-text-medium);
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-column ul li a {
+  color: var(--color-text-medium, #A0A0A0);
   text-decoration: none;
-  margin: 0 0.75rem;
   font-size: 0.9rem;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
+}
+.footer-column ul li a:hover,
+.footer-column ul li a.footer-admin-link:hover { /* Para que el admin link también cambie */
+  color: var(--color-metallic-gold, #B08D57);
 }
 
-.footer-links a:hover {
-  color: var(--color-metallic-gold);
+.footer-admin-link { /* Estilo discreto para el enlace de admin */
+  /* Podría tener un color ligeramente diferente o un pequeño icono si quieres */
+  opacity: 0.8;
 }
 
-.social-icons {
-  margin-bottom: 1rem;
+/* Sección de descarga de apps */
+.app-download-column h4 {
+  text-align: left; /* O center si prefieres */
+}
+.store-badges-container {
+  display: flex;
+  flex-direction: column; /* Apilar badges */
+  align-items: flex-start; /* Alinear a la izquierda */
+  gap: 0.75rem;
+}
+.store-badge {
+  height: 40px; /* Ajusta la altura de los badges */
+  width: auto;
+  transition: opacity 0.2s ease;
+}
+.store-badge:hover {
+  opacity: 0.85;
+}
+.store-badge.apple { /* Ajuste específico para el badge de Apple si es SVG y necesita tamaño */
+  /* width: 135px; */ /* Descomenta y ajusta si el SVG de Apple no se escala bien */
 }
 
-.social-icons a {
-  color: var(--color-metallic-gold);
-  text-decoration: none;
-  margin: 0 0.5rem;
-  font-size: 1.2rem; /* Placeholder, usa iconos reales */
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+
+/* Iconos Sociales en el Footer */
+.footer-social-and-bottom {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.1));
+  margin-top: 1rem;
 }
 
-.social-icons a:hover {
-  color: var(--color-gold-highlight);
-  text-shadow: var(--neon-glow-gold);
+.social-icons-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
 }
 
-.copyright {
+.social-icons-footer a {
+  color: var(--color-text-medium, #A0A0A0); /* Iconos más sutiles en el footer */
+  font-size: 1.3rem; /* Tamaño de los iconos sociales */
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.social-icons-footer a:hover {
+  color: var(--color-metallic-gold, #B08D57);
+  transform: scale(1.15);
+}
+
+/* Barra de Copyright */
+.footer-copyright-bar {
+  background-color: var(--color-charcoal-black, #121212); /* Fondo más oscuro para la barra de copyright */
+  color: var(--color-text-medium, #A0A0A0);
+  padding: 1rem 1.5rem;
+  text-align: center;
   font-size: 0.8rem;
-  margin-bottom: 0.3rem;
+  position: relative; /* Para que la tira de película no lo tape si no se ajusta bien el padding */
+  z-index: 1;
 }
-
+.footer-copyright-bar p {
+  margin: 0.25rem 0;
+}
 .design-credit {
-    font-size: 0.7rem;
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
+/* Tira de Película Decorativa */
 .footer-film-strip {
   position: absolute;
-  bottom: 0px; /* Ajusta para que se vea bien */
+  bottom: 0; /* Pegada abajo */
   left: 0;
   width: 100%;
-  height: 20px; /* Altura de la tira */
+  height: 20px;
+  /* ... (tu código existente para background-image de la tira) ... */
   background-image:
-    linear-gradient(to right, var(--color-charcoal-black) 5%, transparent 5%, transparent 95%, var(--color-charcoal-black) 95%), /* Bordes difuminados */
+    linear-gradient(to right, var(--color-charcoal-black, #121212) 5%, transparent 5%, transparent 95%, var(--color-charcoal-black, #121212) 95%),
     repeating-linear-gradient(
       to right,
-      var(--color-charcoal-black-secondary) 0px, var(--color-charcoal-black-secondary) 18px, /* Espacio opaco */
-      var(--color-metallic-gold) 18px, var(--color-metallic-gold) 19px,     /* Línea dorada */
-      var(--color-charcoal-black-secondary) 19px, var(--color-charcoal-black-secondary) 21px, /* Espacio opaco */
-      var(--color-metallic-gold) 21px, var(--color-metallic-gold) 22px      /* Línea dorada */
+      var(--color-charcoal-black-secondary, #1A1A1A) 0px, var(--color-charcoal-black-secondary, #1A1A1A) 18px,
+      var(--color-metallic-gold, #B08D57) 18px, var(--color-metallic-gold, #B08D57) 19px,
+      var(--color-charcoal-black-secondary, #1A1A1A) 19px, var(--color-charcoal-black-secondary, #1A1A1A) 21px,
+      var(--color-metallic-gold, #B08D57) 21px, var(--color-metallic-gold, #B08D57) 22px
     ),
-    radial-gradient(circle at 5px 5px, transparent 3px, var(--color-charcoal-black-secondary) 3px), /* Perforaciones */
-    radial-gradient(circle at 5px 15px, transparent 3px, var(--color-charcoal-black-secondary) 3px);
-  background-size: auto, 40px 100%, 40px 20px, 40px 20px; /* Ajusta el tamaño del patrón de perforaciones */
+    radial-gradient(circle at 5px 5px, transparent 3px, var(--color-charcoal-black-secondary, #1A1A1A) 3px),
+    radial-gradient(circle at 5px 15px, transparent 3px, var(--color-charcoal-black-secondary, #1A1A1A) 3px);
+  background-size: auto, 40px 100%, 40px 20px, 40px 20px;
   background-repeat: repeat-x;
-  background-position: 0 0, 0 0, 0 0, 0 100%; /* Posiciona las perforaciones arriba y abajo */
-  opacity: 0.3; /* Sutil */
-  z-index: 0;
-}
-
-.social-icons {
-  margin-bottom: 1rem;
-  display: flex; /* Para alinear los iconos horizontalmente */
-  justify-content: center; /* Centrar los iconos */
-  gap: 1rem; /* Espacio entre iconos */
-}
-
-.social-icons a {
-  color: var(--color-metallic-gold, #B08D57); /* Color del icono */
-  text-decoration: none;
-  display: inline-flex; /* Para que el SVG se comporte bien dentro del 'a' */
-  align-items: center;
-  justify-content: center;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.social-icons a svg {
-  width: 22px; /* Tamaño del icono SVG */
-  height: 22px; /* Tamaño del icono SVG */
-  fill: currentColor; /* El SVG tomará el color del 'a' padre */
-}
-
-.social-icons a:hover {
-  color: var(--color-gold-highlight, #FFD700); /* Color al hacer hover */
-  transform: scale(1.15); /* Pequeño efecto de zoom al hacer hover */
+  background-position: 0 0, 0 0, 0 0, 0 100%;
+  opacity: 0.2; /* Más sutil */
+  z-index: 0; /* Detrás del copyright bar */
 }
 
 
+/* Media Queries para el Footer */
 @media (max-width: 768px) {
-  .footer-links a {
-    display: block;
-    margin: 0.5rem 0;
+  .footer-columns {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Columnas un poco más estrechas */
+    gap: 1.5rem;
+  }
+  .footer-column h4 {
+    font-size: 1.1rem;
+  }
+  .footer-column ul li a {
+    font-size: 0.85rem;
+  }
+  .app-download-column {
+    grid-column: 1 / -1; /* Que ocupe todo el ancho en móvil si hay muchas columnas */
+    text-align: center; /* Centrar el título */
+  }
+  .store-badges-container {
+    flex-direction: row; /* Badges en fila en móvil */
+    justify-content: center; /* Centrar badges */
+    flex-wrap: wrap; /* Permitir que se envuelvan si no caben */
+  }
+  .social-icons-footer {
+      justify-content: center; /* Asegurar centrado */
+      margin-bottom: 1rem;
+  }
+  .footer-social-and-bottom {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-footer {
+    padding: 2rem 1rem 0;
+  }
+  .footer-columns {
+    /* Podrías hacer que todas las columnas sean 1fr o apilarlas */
+    grid-template-columns: 1fr;
+  }
+  .footer-column {
+      text-align: center; /* Centrar texto de columnas en móvil muy pequeño */
+  }
+  .footer-column ul {
+      display: inline-block; /* Para que se centre el ul si las listas no son largas */
+      text-align: left;
+  }
+  .app-download-column h4, .store-badges-container {
+      align-items: center; /* Centrar badges si están en columna */
   }
 }

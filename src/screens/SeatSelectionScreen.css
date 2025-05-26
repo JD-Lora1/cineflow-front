@@ -1,0 +1,82 @@
+/* src/screens/SeatSelectionScreen.css */
+
+.seat-selection-page .ticket-flow-main-content {
+  /* Hereda de TicketQuantityScreen.css si comparten la clase base,
+     o puedes definir paddings específicos aquí si es necesario. */
+}
+
+.seat-selection-page .ticket-flow-layout {
+  /* Ya definido en TicketQuantityScreen.css, se reutiliza */
+}
+
+.seat-selection-area {
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A);
+  /* background-color: #fff; */ /* Si fondo general claro */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.seat-selection-area h2 {
+  font-family: var(--font-body);
+  color: var(--color-text-light, #EAEAEA);
+  /* color: #333; */ /* Si fondo claro */
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.seat-selection-area .info-text {
+  font-family: var(--font-body);
+  color: var(--color-text-medium, #A0A0A0);
+  /* color: #555; */ /* Si fondo claro */
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem; /* Menos espacio antes de la leyenda */
+  line-height: 1.5;
+}
+
+/* Contenedor del temporizador en el PurchaseSummary */
+.timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* O flex-start */
+  gap: 0.5rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background-color: var(--color-charcoal-dark-grey, rgba(36,36,36,0.7));
+  /* background-color: #f0f0f0; */ /* Si fondo claro */
+  border-radius: 6px;
+  font-family: var(--font-body);
+  color: var(--color-text-light, #EAEAEA);
+  /* color: #444; */ /* Si fondo claro */
+  font-size: 0.9rem;
+}
+.timer-container svg {
+  font-size: 1.2rem;
+  color: var(--color-metallic-gold, #B08D57);
+}
+.timer-container .time-left {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* --- Media Queries para SeatSelectionScreen --- */
+@media (max-width: 768px) { /* Móviles */
+  .seat-selection-area {
+    padding: 1rem;
+  }
+  .seat-selection-area h2 {
+    font-size: 1.5rem;
+  }
+  .seat-selection-area .info-text {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .timer-container {
+    margin-top: 1.5rem; /* Separar del resumen si está debajo */
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  .timer-container svg { font-size: 1rem; }
+  .timer-container .time-left { font-size: 0.9rem; }
+}

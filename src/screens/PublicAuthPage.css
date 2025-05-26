@@ -1,0 +1,15 @@
+/* src/screens/PublicAuthPage.css */
+
+.public-auth-page-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-charcoal-black, #eaeaea); /* Fondo general de la app */
+}
+
+.public-auth-main-content {
+  flex-grow: 1;
+  padding-top: 80px; /* Espacio para el header fijo, ajusta según la altura de tu header */
+  /* Puedes añadir un padding-bottom si quieres espacio antes del footer,
+     o dejar que el margin del .auth-form-container lo maneje */
+}

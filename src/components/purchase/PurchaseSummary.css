@@ -1,0 +1,99 @@
+/* src/components/purchase/PurchaseSummary.css */
+.purchase-summary-card {
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A); /* O #fff si fondo general claro */
+  /* background-color: #fff; */
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+  font-family: var(--font-body);
+}
+
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+}
+.summary-header h3 {
+  font-family: var(--font-body); /* O var(--font-body) bold */
+  color: var(--color-text-light, #EAEAEA); /* O #333 */
+  font-size: 1.4rem;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+.close-summary-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-medium, #A0A0A0); /* O #777 */
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.5rem; /* Para el icono */
+}
+.close-summary-btn:hover {
+  color: var(--color-crimson-red);
+}
+
+.summary-movie-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.summary-poster {
+  width: 70px; /* Ancho del poster en el resumen */
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.summary-movie-details h4 {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: var(--color-text-light, #EAEAEA); /* O #333 */
+  margin: 0 0 0.3rem 0;
+}
+.summary-movie-details h4 .detail-value {
+  font-weight: normal; /* El valor no necesita ser tan bold como el label */
+  color: var(--color-text-medium, #A0A0A0); /* O #555 */
+}
+.summary-movie-details p {
+  font-size: 0.85rem;
+  color: var(--color-text-medium, #A0A0A0); /* O #555 */
+  margin: 0.2rem 0;
+  line-height: 1.4;
+}
+.summary-movie-details p .detail-value {
+  font-weight: 500; /* Opcional: valores un poco más bold */
+  color: var(--color-text-light, #EAEAEA); /* O #444 */
+}
+
+.summary-service-charge {
+  font-size: 0.75rem;
+  color: var(--color-text-medium, #A0A0A0); /* O #666 */
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background-color: var(--color-charcoal-dark-grey, rgba(36,36,36,0.5)); /* O #f9f9f9 */
+  border-radius: 4px;
+  font-style: italic;
+}
+
+.summary-total {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.summary-total h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-text-light, #EAEAEA); /* O #333 */
+  margin: 0;
+}
+.summary-total .total-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-metallic-gold, #B08D57); /* O tu color primario */
+}

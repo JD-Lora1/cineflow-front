@@ -1,0 +1,64 @@
+/* src/components/purchase/TicketTypeSelector.css */
+.ticket-type-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.1));
+}
+.ticket-type-item:last-child {
+  border-bottom: none;
+}
+
+.ticket-info {
+  flex-grow: 1;
+}
+.ticket-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-light, #EAEAEA); /* O #444 */
+  margin-bottom: 0.2rem;
+}
+.ticket-price {
+  font-size: 0.9rem;
+  color: var(--color-metallic-gold, #B08D57); /* O tu color de precio */
+  font-weight: bold;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Espacio entre botones y display */
+}
+.quantity-selector button {
+  background-color: var(--color-charcoal-dark-grey, #333); /* O #e0e0e0 */
+  color: var(--color-text-light, #EAEAEA); /* O #555 */
+  border: 1px solid var(--color-border-medium, rgba(176, 141, 87, 0.3)); /* O #ccc */
+  border-radius: 50%; /* Botones redondos */
+  width: 32px;
+  height: 32px;
+  font-size: 0.9rem; /* Tamaño del icono +/- */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.quantity-selector button:hover:not(:disabled) {
+  background-color: var(--color-metallic-gold, #B08D57);
+  color: var(--color-charcoal-black, #121212);
+  border-color: var(--color-metallic-gold, #B08D57);
+}
+.quantity-selector button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quantity-display {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-text-light, #EAEAEA); /* O #333 */
+  min-width: 25px; /* Ancho mínimo para el número */
+  text-align: center;
+}

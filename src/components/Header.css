@@ -1,236 +1,213 @@
 /* src/components/Header.css */
 
-/* Estilos globales para prevenir scroll cuando el menú está abierto */
-body.no-scroll {
-  overflow: hidden;
-}
-
 .app-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  background-color: rgba(18, 18, 18, 0.9); /* Un poco más opaco para el menú integrado */
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-content-wrapper {
+  max-width: 1300px; /* O el ancho máximo de tu contenido principal */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* Padding lateral para el contenido del header */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem; /* Padding base para móvil y desktop pequeño */
-  background-color: rgba(18, 18, 18, 0.8);
-  backdrop-filter: blur(5px);
-  z-index: 1000;
-  border-bottom: 1px solid rgba(176, 141, 87, 0.2);
-  min-height: 60px; /* Altura mínima */
+  min-height: 65px; /* Altura del header */
 }
 
 .logo {
   font-family: var(--font-display);
-  font-size: 1.8rem; /* Ajustado para mejor consistencia móvil/desktop */
-  color: var(--color-metallic-gold);
+  font-size: 1.8rem;
+  color: var(--color-metallic-gold); /* Ya tiene buen contraste */
   letter-spacing: 1px;
-  text-shadow: var(--neon-glow-gold);
-  cursor: pointer;
-  text-decoration: none; /* Si el logo es un Link */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.logo a {
+  color: inherit;
+  text-decoration: none;
 }
 .logo:hover {
-    color: var(--color-gold-highlight);
-}
-
-.logo img {
-  height: 35px; /* Ajustado */
-  vertical-align: middle; /* Para alinear con texto si hay */
+  color: var(--color-gold-highlight);
 }
 
 .navigation {
-  display: flex; /* Para alinear los iconos de nav y desktop-nav-links */
+  display: flex;
   align-items: center;
+  position: relative;
 }
 
-.navigation .nav-icon { /* Estilo base para iconos de búsqueda y menú */
+/* Estilo base para iconos (búsqueda, menú) */
+.nav-icon {
   background: none;
   border: none;
-  color: var(--color-metallic-gold);
-  padding: 0.5rem; /* Añadir padding para área de click más grande */
-  margin-left: 0.5rem; /* Espacio base */
+  /* CAMBIO: Usar un color más claro para los iconos por defecto */
+  color: var(--color-text-light, #EAEAEA); /* O var(--color-metallic-gold) si prefieres iconos dorados */
+  padding: 0.5rem;
+  margin-left: 0.75rem;
   cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
-  display: inline-flex; /* Para alinear SVG correctamente */
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.2rem;
 }
-.navigation .nav-icon svg {
-  width: 22px; /* Tamaño consistente para SVGs */
-  height: 22px;
-}
-.navigation .nav-icon:hover {
-  color: var(--color-gold-highlight);
+.nav-icon:hover {
+  color: var(--color-gold-highlight); /* Dorado para hover sigue bien */
   transform: scale(1.1);
 }
 
-
-/* Icono de búsqueda (puede ser siempre visible o parte del menú móvil) */
-.navigation .search-icon {
-  /* Estilos específicos si son necesarios */
-}
-
-/* Icono de Menú Hamburguesa (visible solo en móvil por media query) */
-.navigation .menu-icon-mobile {
-  display: none; /* Oculto por defecto, se muestra en la media query */
-  z-index: 1101; /* Por encima del overlay */
-}
-/* Aplicar color activo si el menú está abierto */
-.app-header.mobile-menu-active .navigation .menu-icon-mobile {
-  color: var(--color-gold-highlight);
-}
-
-
-/* Navegación para Desktop (oculta en móvil por defecto) */
+/* Navegación de Desktop */
 .desktop-nav-links {
-  display: none; /* Se mostrará en la media query de desktop */
+  display: none;
   align-items: center;
+  gap: 1.5rem; /* Aumentar un poco el gap si es necesario */
 }
 .desktop-nav-links a {
   font-family: var(--font-body);
-  color: var(--color-text-light);
+  /* CAMBIO PRINCIPAL: Usar un color de texto mucho más claro */
+  color: var(--color-text-light, #EAEAEA); /* Blanco o gris muy claro */
   text-decoration: none;
-  margin-left: 1.5rem;
-  font-size: 0.95rem; /* Ligeramente ajustado */
-  padding: 0.5rem 0.25rem; /* Padding para dar espacio al subrayado */
+  font-size: 0.95rem; /* Un poco más grande para legibilidad */
+  font-weight: 500;
+  padding: 0.25rem 0.1rem; /* Ajustar padding horizontal si los textos están muy juntos */
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 .desktop-nav-links a::after {
   content: '';
   position: absolute;
   width: 0;
   height: 2px;
-  bottom: 0px; /* Alineado con el padding inferior del 'a' */
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: -4px; /* Un poco más separado */
+  left: 0;
   background-color: var(--color-metallic-gold);
   transition: width 0.3s ease;
 }
-.desktop-nav-links a:hover {
+/* Hover y Activo siguen usando dorado, lo cual debería contrastar bien con el texto claro */
+.desktop-nav-links a:hover,
+.desktop-nav-links a.active {
   color: var(--color-metallic-gold);
 }
-.desktop-nav-links a:hover::after {
+.desktop-nav-links a:hover::after,
+.desktop-nav-links a.active::after {
   width: 100%;
 }
-.desktop-nav-links a.active { /* Estilo para NavLink activo */
-    color: var(--color-metallic-gold);
-}
-.desktop-nav-links a.active::after {
-    width: 100%;
-}
 
-
-/* Enlace a Admin en Desktop */
+/* Enlace Admin en Desktop */
 .admin-link-desktop {
-  margin-left: 2rem !important;
-  padding: 0.5rem 1rem !important; /* Más padding para apariencia de botón */
+  margin-left: 1.5rem !important; /* Ajustar separación */
+  padding: 0.5rem 1rem !important;
   border: 1px solid var(--color-metallic-gold);
   border-radius: 5px;
-  color: var(--color-metallic-gold) !important;
-  transition: background-color 0.3s ease, color 0.3s ease !important;
-  font-size: 0.9rem !important; /* Consistencia con otros botones */
+  font-size: 0.9rem !important; /* Consistencia */
+  color: var(--color-metallic-gold) !important; /* Ya tiene buen contraste */
+  /* ... (resto de estilos del admin-link-desktop) ... */
 }
 .admin-link-desktop:hover {
   background-color: var(--color-metallic-gold);
   color: var(--color-charcoal-black) !important;
 }
-.admin-link-desktop::after { /* No queremos el subrayado en este botón */
+.admin-link-desktop.active {
+  background-color: var(--color-metallic-gold);
+  color: var(--color-charcoal-black) !important;
+}
+.admin-link-desktop::after {
   display: none !important;
 }
 
 
-/* Menú Desplegable Móvil */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 75%; /* Ancho del menú */
-  max-width: 320px; /* Ancho máximo */
-  height: 100vh;
-  background-color: var(--color-charcoal-black);
-  padding: 5rem 1.5rem 2rem; /* Más padding superior para no solapar con header */
-  box-shadow: -3px 0 10px rgba(0,0,0,0.25);
-  z-index: 1050;
-  transition: right 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transición con "rebote" */
+/* Icono de Menú Móvil */
+.menu-icon-mobile {
+  display: none;
+  z-index: 1002;
+  /* El color ya se hereda de .nav-icon, que ahora es más claro */
+}
+.app-header.mobile-menu-active .menu-icon-mobile {
+  color: var(--color-gold-highlight);
+}
+
+/* Menú Desplegable Móvil (Integrado) */
+.mobile-nav-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--color-charcoal-black, #121212);
+  border: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  min-width: 220px; /* Un poco más ancho si es necesario */
+  z-index: 1001;
+  padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  overflow-y: auto; /* Por si hay muchos enlaces */
-}
-
-.mobile-menu.open {
-  right: 0;
-}
-
-.mobile-menu a {
-  font-family: var(--font-display);
-  color: var(--color-text-light);
-  text-decoration: none;
-  font-size: 1.4rem;
-  padding: 0.9rem 0;
-  width: 100%;
-  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.1));
-  transition: color 0.2s ease;
-}
-.mobile-menu a:last-child {
-  border-bottom: none;
-}
-.mobile-menu a:hover,
-.mobile-menu a.active { /* Estilo para NavLink activo */
-  color: var(--color-metallic-gold);
-}
-
-.mobile-menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6); /* Overlay un poco más oscuro */
-  z-index: 1001;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Asegurar que la visibilidad cambie después */
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
 }
-.mobile-menu.open + .mobile-menu-overlay {
+
+.app-header.mobile-menu-active .mobile-nav-dropdown {
   opacity: 1;
   visibility: visible;
-  transition-delay: 0s; /* Aplicar inmediatamente al abrir */
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.mobile-nav-dropdown a {
+  font-family: var(--font-body);
+  /* CAMBIO: Texto claro para los enlaces del menú móvil */
+  color: var(--color-text-light, #EAEAEA);
+  text-decoration: none;
+  font-size: 1rem; /* Tamaño consistente */
+  font-weight: 500;
+  padding: 0.85rem 1.75rem; /* Más padding para mejor toque */
+  display: block;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  white-space: nowrap;
+}
+.mobile-nav-dropdown a:hover,
+.mobile-nav-dropdown a.active {
+  color: var(--color-metallic-gold);
+  background-color: var(--color-charcoal-dark-grey, #242424);
 }
 
 
 /* --- Media Queries --- */
-
-/* Estilos para Móvil y Tablet Pequeña (hasta 768px) */
 @media (max-width: 768px) {
-  .app-header {
-    padding: 0.75rem 1rem; /* Padding más pequeño para móvil */
+  .header-content-wrapper {
+    padding: 0 1rem; /* Menos padding lateral en móvil */
   }
   .logo {
-    font-size: 1.6rem; /* Logo más pequeño */
+    font-size: 1.6rem;
   }
-  .navigation .desktop-nav-links {
+  .desktop-nav-links {
     display: none; /* Ocultar enlaces de desktop */
   }
-  .navigation .menu-icon-mobile {
+  .menu-icon-mobile {
     display: inline-flex; /* Mostrar icono de hamburguesa */
   }
-  .navigation .nav-icon { /* Ajuste general para iconos en móvil */
-      margin-left: 0.25rem;
+  .nav-icon { /* Reducir margen izquierdo para iconos en móvil */
+    margin-left: 0.25rem;
   }
 }
 
-/* Estilos para Desktop (desde 769px) */
 @media (min-width: 769px) {
-  .app-header {
-    padding: 1rem 3rem; /* Padding para desktop */
-  }
-  .navigation .menu-icon-mobile {
-    display: none; /* Ocultar icono de hamburguesa */
-  }
   .desktop-nav-links {
     display: flex; /* Mostrar enlaces de desktop */
+  }
+  .menu-icon-mobile {
+    display: none; /* Ocultar icono de hamburguesa */
+  }
+  .mobile-nav-dropdown { /* Asegurarse de que el dropdown esté oculto en desktop */
+      display: none !important;
   }
 }

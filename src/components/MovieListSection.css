@@ -110,6 +110,14 @@
   background-color: var(--color-metallic-gold);
 }
 
+.movie-card-link-wrapper {
+  text-decoration: none; /* Quitar subrayado del enlace */
+  color: inherit; /* Heredar color para que no sea el azul por defecto */
+  display: block; /* O inline-block, dependiendo de cómo quieras que se comporte */
+  /* Si MovieCard ya tiene un display: block o flex, esto puede no ser necesario,
+     pero es bueno tenerlo en cuenta si el layout se rompe. */
+}
+
 
 @media (min-width: 769px) {
   .movie-carousel {

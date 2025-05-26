@@ -1,0 +1,168 @@
+/* src/screens/TicketQuantityScreen.css */
+
+.ticket-flow-page {
+  background-color: var(--color-charcoal-black, #121212); /* O un gris muy claro como en la referencia si prefieres */
+  /* background-color: #f4f4f4; */
+  color: var(--color-text-light, #EAEAEA); /* O texto oscuro si el fondo es claro */
+  /* color: #333; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-flow-main-content {
+  flex-grow: 1;
+  padding-top: calc(65px + 1.5rem); /* Espacio para header fijo + padding superior */
+  padding-bottom: 2rem;
+  max-width: 1200px; /* Ancho máximo del contenido */
+  width: 90%; /* O 95% */
+  margin: 0 auto; /* Centrar */
+}
+
+.ticket-flow-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Área de selección más grande que el resumen */
+  gap: 2.5rem; /* Espacio entre el área de selección y el resumen */
+  margin-top: 1.5rem; /* Espacio después de la barra de progreso */
+}
+
+.ticket-selection-area {
+  /* Estilos para el área principal de selección de boletos */
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A); /* O blanco si el fondo general es claro */
+  /* background-color: #fff; */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.page-navigation { /* Para el botón de regresar (opcional) */
+    margin-bottom: 1.5rem;
+}
+.back-link {
+    color: var(--color-metallic-gold);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.back-link:hover {
+    color: var(--color-gold-highlight);
+}
+
+
+.ticket-selection-area h2 {
+  font-family: var(--font-body); /* O var(--font-body) con bold */
+  color: var(--color-text-light, #EAEAEA); /* O #333 si fondo claro */
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.info-text {
+  font-family: var(--font-body);
+  color: var(--color-text-medium, #A0A0A0); /* O #555 si fondo claro */
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.ticket-section-group {
+  margin-bottom: 2rem;
+}
+.ticket-section-group h3 {
+  font-family: var(--font-body); /* O var(--font-display) más pequeño */
+  color: var(--color-text-light, #EAEAEA); /* O #444 si fondo claro */
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.2));
+}
+
+.continue-button-container {
+  margin-top: 2.5rem;
+  text-align: center; /* O right */
+}
+
+.cta-button-flow { /* Estilo para el botón de continuar */
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  background-color: var(--color-crimson-red, #DC143C); /* O el color primario de tu marca */
+  color: white;
+  padding: 0.9rem 2.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  text-transform: uppercase;
+}
+.cta-button-flow:hover:not(:disabled) {
+  background-color: #b01030; /* Más oscuro */
+  transform: translateY(-2px);
+}
+.cta-button-flow:disabled {
+  background-color: var(--color-charcoal-dark-grey, #555);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Resumen de Compra a la Derecha */
+.purchase-summary-area {
+  /* El componente PurchaseSummary ya tendrá sus propios estilos */
+  position: sticky; /* Para que el resumen se quede fijo al hacer scroll */
+  top: calc(65px + 2rem); /* Altura del header + un poco de espacio */
+  align-self: flex-start; /* Importante para que sticky funcione bien con grid */
+  max-height: calc(100vh - 65px - 4rem); /* Altura máxima para evitar que se salga, con scroll interno */
+  overflow-y: auto;
+}
+
+/* --- Media Queries para TicketQuantityScreen --- */
+@media (max-width: 992px) { /* Tablets */
+  .ticket-flow-layout {
+    grid-template-columns: 1.5fr 1fr; /* Ajustar proporción */
+    gap: 1.5rem;
+  }
+  .ticket-selection-area {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) { /* Móviles */
+  .ticket-flow-main-content {
+    padding-top: calc(60px + 1rem); /* Header móvil más pequeño */
+    width: 100%;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .ticket-flow-layout {
+    grid-template-columns: 1fr; /* Apilar en una sola columna */
+  }
+  .purchase-summary-area {
+    position: static; /* Quitar sticky en móvil */
+    max-height: none;
+    overflow-y: visible;
+    margin-top: 1.5rem; /* Espacio si está debajo */
+    order: -1; /* Opcional: Poner el resumen arriba en móvil */
+  }
+  .ticket-selection-area {
+    padding: 1rem;
+  }
+  .ticket-selection-area h2 {
+    font-size: 1.5rem;
+  }
+  .info-text {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+  .ticket-section-group h3 {
+    font-size: 1rem;
+  }
+  .cta-button-flow {
+    width: 100%; /* Botón ocupa todo el ancho en móvil */
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+}

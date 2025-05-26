@@ -1,51 +1,81 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Usar Link de react-router-dom para navegación interna
 import './Footer.css';
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaTiktok } from 'react-icons/fa'; // Más iconos de redes
 
-// Componentes SVG para los iconos de redes sociales
-const FacebookIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M20 0H4C1.791 0 0 1.791 0 4v16c0 2.209 1.791 4 4 4h16c2.209 0 4-1.791 4-4V4c0-2.209-1.791-4-4-4zm-2.173 12.47h-2.455v8.53H11.8V12.47H9.852V9.941h1.948V8.013c0-1.927 1.163-2.977 2.895-2.977.822 0 1.529.061 1.735.089v2.365h-1.4c-.935 0-1.116.444-1.116 1.096v1.434h2.58l-.336 2.529z"/>
-  </svg>
+// Opcional: SVGs para los badges de las tiendas de apps
+const GooglePlayBadge = () => (
+  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Disponible en Google Play">
+    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" alt="Disponible en Google Play" className="store-badge" />
+  </a>
 );
-
-const InstagramIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.784.306-1.459.717-2.126 1.384S.936 3.356.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.784.717 1.459 1.384 2.126.667.666 1.342 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.784-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.342 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.148-.558-2.913-.306-.784-.718-1.459-1.384-2.126C20.644.936 19.968.523 19.184.217c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.056 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381.896-.422.164-1.057.36-2.227.413-1.266.057-1.646.07-4.85.07s-3.585-.015-4.85-.074c-1.17-.056-1.805-.249-2.227-.413-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.164-.422-.36-1.057-.413-2.227-.057-1.266-.07-1.646-.07-4.85s.015-3.585.071-4.85c.055-1.17.249-1.805.415-2.227.217-.562.477-.96.896-1.382.42-.419.819-.679 1.381-.896.422-.164 1.057-.36 2.227-.413C8.415 2.172 8.797 2.16 12 2.16zm0 4.885A4.955 4.955 0 1 0 12 16.95a4.955 4.955 0 0 0 0-9.91zm0 8.162a3.207 3.207 0 1 1 0-6.414 3.207 3.207 0 0 1 0 6.414zM18.405 4.112a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/>
-  </svg>
+const AppStoreBadge = () => (
+  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Descargar en la App Store">
+    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Descargar en la App Store" className="store-badge apple" />
+  </a>
 );
-
-const TwitterIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.424.727-.666 1.581-.666 2.477 0 1.921.931 3.613 2.364 4.598-.864-.027-1.667-.265-2.377-.658v.052c0 2.682 1.884 4.916 4.379 5.43-.524.142-1.142.196-1.754.115-.341 0-.672-.033-.986-.095.703 2.199 2.734 3.801 5.144 3.846-1.871 1.466-4.228 2.342-6.79 2.342-.445 0-.883-.026-1.316-.077 2.419 1.549 5.296 2.452 8.384 2.452 10.065 0 15.573-8.342 15.275-15.924.998-.721 1.863-1.617 2.554-2.644z"/>
-  </svg>
-);
-
+// Nota: Necesitarás alojar o encontrar URLs para los badges de Huawei AppGallery si quieres incluirlo.
 
 const Footer = () => {
   return (
     <footer className="app-footer">
-      <div className="footer-content">
-        <div className="footer-links">
-          <a href="#sobre-nosotros">Sobre Nosotros</a>
-          <a href="#contacto">Contacto</a>
-          <a href="#faq">FAQs</a>
-          <a href="#terminos">Términos y Condiciones</a>
+      <div className="footer-main-content"> {/* Wrapper para el contenido principal del footer */}
+        <div className="footer-columns">
+          <div className="footer-column">
+            <h4>Sobre CineFlow</h4>
+            <ul>
+              <li><Link to="/quienes-somos">Quiénes somos</Link></li>
+              <li><Link to="/trabaja-con-nosotros">Trabaja con nosotros</Link></li>
+              <li><Link to="/prensa">Sala de prensa</Link></li>
+              <li><Link to="/blog">Nuestro Blog</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h4>Atención al Cliente</h4>
+            <ul>
+              <li><Link to="/contacto">Contáctanos (PQRS)</Link></li>
+              <li><Link to="/faq">Preguntas Frecuentes (FAQ)</Link></li>
+              <li><Link to="/mapa-del-sitio">Mapa del Sitio</Link></li>
+            </ul>
+          </div>
+
+          <div className="footer-column">
+            <h4>Legal</h4>
+            <ul>
+              <li><Link to="/terminos-condiciones">Términos y Condiciones</Link></li>
+              <li><Link to="/politica-privacidad">Política de Privacidad</Link></li>
+              <li><Link to="/politica-cookies">Política de Cookies</Link></li>
+              <li><Link to="/admin/dashboard" className="footer-admin-link">Acceso Admin</Link></li> {/* Enlace Admin aquí */}
+            </ul>
+          </div>
+
+          <div className="footer-column app-download-column">
+            <h4>Descarga nuestra App</h4>
+            <div className="store-badges-container">
+              <GooglePlayBadge />
+              <AppStoreBadge />
+              {/* <HuaweiAppGalleryBadge /> */}
+            </div>
+          </div>
         </div>
-        <div className="social-icons">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <FacebookIcon />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <InstagramIcon />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-            <TwitterIcon />
-          </a>
+
+        <div className="footer-social-and-bottom">
+          <div className="social-icons-footer">
+            <a href="https://facebook.com/tu-pagina" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF /></a>
+            <a href="https://instagram.com/tu-perfil" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://twitter.com/tu-cuenta" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FaTwitter /></a>
+            <a href="https://youtube.com/tu-canal" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><FaYoutube /></a>
+            <a href="https://tiktok.com/@tu-usuario" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><FaTiktok /></a>
+          </div>
         </div>
-        <p className="copyright">© {new Date().getFullYear()} CineFlow. Todos los derechos reservados.</p>
-        <p className="design-credit">Una experiencia cinematográfica sin igual</p>
       </div>
-       <div className="footer-film-strip"></div>
+
+      <div className="footer-copyright-bar">
+        <p>© {new Date().getFullYear()} CineFlow. Todos los derechos reservados.</p>
+        <p className="design-credit">Una experiencia cinematográfica creada por VB</p>
+      </div>
+      <div className="footer-film-strip"></div> {/* Tira de película decorativa */}
     </footer>
   );
 };

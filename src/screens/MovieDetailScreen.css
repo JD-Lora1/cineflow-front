@@ -1,0 +1,438 @@
+/* src/screens/MovieDetailScreen.css */
+/* Asegúrate de que tus variables de color y fuentes globales estén disponibles */
+
+.movie-detail-page {
+  background-color: var(--color-charcoal-black, #121212);
+  color: var(--color-text-light, #EAEAEA);
+  font-family: var(--font-body);
+}
+
+.movie-detail-main-content {
+  max-width: 1200px; /* Ancho máximo del contenido */
+  margin: 0 auto;
+  padding: calc(65px + 2rem) 1.5rem 2rem; /* 65px para el header fijo + padding */
+}
+
+.movie-detail-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Columna para poster, resto para contenido */
+  gap: 2.5rem; /* Espacio entre columnas */
+}
+
+/* --- Sidebar (Poster e Info) --- */
+.movie-detail-sidebar {
+  /* Estilos para la columna del poster y la info */
+}
+
+.movie-detail-poster {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  border: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.1));
+}
+
+.movie-info-block {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+}
+.movie-info-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.movie-info-block h3 {
+  font-family: var(--font-body); /* O var(--font-body) con bold */
+  color: var(--color-metallic-gold, #B08D57);
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.movie-info-block p {
+  font-size: 0.9rem;
+  color: var(--color-text-medium, #A0A0A0);
+  line-height: 1.6;
+  margin: 0;
+}
+.synopsis-text .read-more-link {
+  display: block;
+  color: var(--color-gold-highlight, #cca068);
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+.synopsis-text .read-more-link:hover {
+  text-decoration: underline;
+}
+
+
+/* --- Contenido Principal (Trailer, Título, Horarios) --- */
+.movie-detail-primary {
+  /* Estilos para la columna principal */
+}
+
+.trailer-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  background-color: var(--color-charcoal-dark-grey, #242424); /* Fallback si no hay trailer */
+}
+.trailer-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.trailer-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-text-medium);
+}
+.trailer-play-button-overlay { /* Opcional: para poner un botón de play grande sobre el thumbnail del video */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3); /* Overlay sutil */
+    color: white;
+    font-size: 4rem; /* Tamaño del icono de play */
+    cursor: pointer;
+    opacity: 1; /* O 0 y mostrar en hover */
+    transition: opacity 0.3s ease;
+}
+.trailer-container:hover .trailer-play-button-overlay {
+    opacity: 0.8; /* O 1 si estaba oculto */
+}
+
+.movie-title-header {
+  margin-bottom: 2rem;
+}
+.movie-title-header h1 {
+  font-family: var(--font-body);
+  font-size: 2.8rem;
+  color: var(--color-text-light, #EAEAEA);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.movie-meta-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-text-medium, #A0A0A0);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+.movie-meta-info svg {
+  margin-right: 0.3rem;
+  color: var(--color-metallic-gold);
+}
+.movie-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.movie-tags .tag {
+  background-color: var(--color-charcoal-dark-grey, #242424);
+  color: var(--color-text-medium, #A0A0A0);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px; /* Tags redondeados */
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* Filtros de Ciudad y Fecha */
+.showtime-filters {
+  display: flex;
+  flex-direction: column; /* Apilar en móvil por defecto */
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-medium);
+  font-size: 0.9rem;
+}
+.filter-group svg {
+  color: var(--color-metallic-gold);
+}
+.filter-group select {
+  background-color: var(--color-charcoal-dark-grey);
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border-medium);
+  border-radius: 5px;
+  padding: 0.5rem 0.8rem;
+  font-family: var(--font-body);
+  margin-left: 0.5rem;
+}
+
+.date-selector-container {
+    overflow-x: auto; /* Permitir scroll horizontal de fechas */
+    padding-bottom: 0.5rem; /* Espacio para la barra de scroll */
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+}
+.date-selector {
+  display: flex; /* Fechas en fila */
+  gap: 0.5rem;
+}
+.date-item {
+  background-color: var(--color-charcoal-dark-grey);
+  color: var(--color-text-medium);
+  border: 1px solid var(--color-border-medium);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  text-align: center;
+  min-width: 70px; /* Ancho mínimo para cada item de fecha */
+  font-family: var(--font-body);
+}
+.date-item .day-name {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 0.1rem;
+}
+.date-item .day-number {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-text-light);
+}
+.date-item .month-name {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+.date-item .year-name-mobile { display: none; } /* Ocultar año en móvil por defecto */
+
+.date-item.active, .date-item:hover {
+  background-color: var(--color-metallic-gold);
+  color: var(--color-charcoal-black);
+  border-color: var(--color-metallic-gold);
+}
+.date-item.active .day-number, .date-item:hover .day-number {
+  color: var(--color-charcoal-black);
+}
+
+
+/* Listado de Cines y Horarios */
+.cinemas-showtimes-list {
+  /* Estilos para el contenedor de cines */
+}
+.cinema-showtimes-item {
+  background-color: var(--color-charcoal-black-secondary, #1A1A1A);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--color-border-subtle);
+}
+.cinema-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  background-color: transparent; /* El color viene del item padre */
+  border: none;
+  width: 100%;
+  text-align: left;
+  color: var(--color-text-light);
+}
+.cinema-header:hover {
+    background-color: var(--color-charcoal-dark-grey);
+    border-radius: 8px 8px 0 0; /* Redondear si está arriba */
+}
+
+.cinema-info h3 {
+  font-family: var(--font-body); /* O --font-display más pequeño */
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-text-light);
+  margin: 0 0 0.2rem 0;
+}
+.cinema-info p {
+  font-size: 0.85rem;
+  color: var(--color-text-medium);
+  margin: 0;
+}
+.cinema-header svg {
+  color: var(--color-metallic-gold);
+  font-size: 1.2rem;
+}
+
+.showtimes-grid {
+  padding: 0 1.5rem 1.5rem; /* Padding solo si está expandido */
+  border-top: 1px solid var(--color-border-subtle);
+}
+.showtimes-available-text {
+    font-size: 0.8rem;
+    color: var(--color-text-medium);
+    margin: 1rem 0;
+    font-style: italic;
+}
+.showtimes-available-text span {
+    display: block; /* Poner la nota en una nueva línea */
+    font-size: 0.75rem;
+}
+
+.screening-type-block {
+  margin-bottom: 1.5rem;
+}
+.screening-type-block:last-child {
+  margin-bottom: 0;
+}
+
+.screening-format-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+.screening-format-header .format-type {
+  background-color: var(--color-metallic-gold);
+  color: var(--color-charcoal-black);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.screening-format-header .format-language {
+  color: var(--color-text-medium);
+  font-weight: 500;
+}
+.screening-format-header .format-details {
+  color: var(--color-text-medium);
+  font-style: italic;
+  font-size: 0.8rem;
+}
+.screening-format-header .format-premier {
+  background-color: var(--color-crimson-red);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.time-slot-button {
+  background-color: var(--color-charcoal-dark-grey, #242424);
+  color: var(--color-text-light, #EAEAEA);
+  border: 1px solid var(--color-border-medium, rgba(176, 141, 87, 0.3));
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+.time-slot-button:hover {
+  background-color: var(--color-metallic-gold);
+  color: var(--color-charcoal-black);
+  border-color: var(--color-metallic-gold);
+  transform: scale(1.05);
+}
+.no-showtimes-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--color-text-medium);
+    font-style: italic;
+}
+
+/* --- Media Queries --- */
+@media (max-width: 992px) { /* Tablets */
+  .movie-detail-layout {
+    grid-template-columns: 250px 1fr; /* Sidebar más estrecho */
+    gap: 2rem;
+  }
+  .movie-title-header h1 {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 768px) { /* Móviles */
+  .movie-detail-main-content {
+    padding-top: calc(60px + 1rem); /* Header móvil más pequeño */
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .movie-detail-layout {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+  .movie-detail-sidebar {
+    display: grid; /* Para poner poster e info lado a lado si se quiere, o apilado */
+    grid-template-columns: 150px 1fr; /* Poster pequeño a la izquierda, info a la derecha */
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 2rem; /* Espacio antes de la sección de trailer/horarios */
+  }
+  .movie-detail-poster {
+    margin-bottom: 0; /* Quitar margen si está en grid */
+    max-width: 150px; /* Limitar ancho del poster */
+  }
+  .movie-info-block h3 { font-size: 1rem; }
+  .movie-info-block p { font-size: 0.85rem; }
+
+  .trailer-container {
+    margin-bottom: 1.5rem;
+  }
+  .movie-title-header h1 {
+    font-size: 2rem;
+  }
+  .showtime-filters {
+    padding: 1rem;
+    flex-direction: column; /* Filtros apilados */
+  }
+  .filter-group select {
+    flex-grow: 1; /* Que el select ocupe el espacio disponible */
+  }
+  .date-item {
+    padding: 0.5rem 0.6rem;
+    min-width: 60px;
+  }
+  .date-item .day-number { font-size: 1rem; }
+  .date-item .year-name-mobile { display: block; font-size: 0.6rem; } /* Mostrar año en móvil */
+
+
+  .cinema-header { padding: 0.8rem 1rem; }
+  .cinema-info h3 { font-size: 1rem; }
+  .showtimes-grid { padding: 0 1rem 1rem; }
+  .time-slot-button { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+}
+
+@media (max-width: 480px) {
+    .movie-detail-sidebar {
+        grid-template-columns: 1fr; /* Apilar poster e info en pantallas muy pequeñas */
+    }
+    .movie-detail-poster {
+        max-width: 200px; /* Permitir que el poster sea un poco más grande si está solo */
+        margin: 0 auto 1.5rem; /* Centrar y dar margen inferior */
+    }
+}

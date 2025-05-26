@@ -10,11 +10,12 @@ const HomeScreen = () => {
       <Header />
       <main>
         <HeroSection />
-        <MovieListSection title="En Cartelera Ahora" />
+        <div id="cartelera-section"> 
+          <MovieListSection title="En Cartelera Ahora" />
+        </div>
         <MovieListSection title="Próximos Estrenos" />
-        {/* Puedes añadir más secciones aquí */}
       </main>
-      <Footer /> {/* Añade el Footer al final */}
+      <Footer />
     </div>
   );
 };

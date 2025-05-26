@@ -1,0 +1,196 @@
+/* src/components/auth/AuthForm.css */
+
+.auth-form-container.integrated-auth-form {
+  max-width: 700px; /* Ancho máximo del contenedor del formulario */
+  margin: 4rem auto; /* Centrar en la página y dar espacio arriba/abajo */
+  padding: 2.5rem 3rem;
+  background-color: var(--color-charcoal-black-secondary, #e2e2e2); /* Fondo del contenedor */
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.15));
+}
+
+.auth-form-header-integrated {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-title-integrated {
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  color: var(--color-metallic-gold, #B08D57);
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.auth-subtitle-integrated {
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  color: var(--color-text-medium, #181818);
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.auth-form-fields .form-group-integrated {
+  margin-bottom: 1.25rem;
+}
+
+.auth-form-fields .form-group-integrated label {
+  display: block;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  color: var(--color-text-light, #191919);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+.auth-form-fields .form-group-integrated label .required-star { /* Si quieres añadir asteriscos visuales */
+    color: var(--color-crimson-red);
+    margin-left: 2px;
+}
+
+
+.auth-form-fields .form-input-integrated {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: var(--color-charcoal-dark-grey, #242424);
+  border: 1px solid var(--color-border-medium, rgba(176, 141, 87, 0.3));
+  border-radius: 6px;
+  color: var(--color-text-light, #EAEAEA);
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.auth-form-fields .form-input-integrated::placeholder {
+  color: var(--color-text-medium, #747474);
+  opacity: 0.7;
+}
+.auth-form-fields .form-input-integrated:focus {
+  outline: none;
+  border-color: var(--color-gold-highlight, #cca068);
+  box-shadow: 0 0 0 3px rgba(204, 160, 104, 0.2);
+}
+
+.form-row { /* Para poner campos en la misma fila */
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.form-row .form-group-integrated.half-width {
+  flex: 1;
+  margin-bottom: 0; /* El margen ya está en .form-row */
+}
+
+.auth-form-fields .terms-checkbox {
+    display: flex;
+    align-items: flex-start; /* Alinear checkbox con el inicio del label */
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+.auth-form-fields .terms-checkbox input[type="checkbox"] {
+    margin-right: 0.75rem;
+    margin-top: 0.2rem; /* Ajuste vertical fino */
+    accent-color: var(--color-metallic-gold); /* Color del check del checkbox */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.auth-form-fields .terms-checkbox .checkbox-label {
+    font-size: 0.85rem;
+    color: var(--color-text-medium);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+.auth-form-fields .terms-checkbox .checkbox-label a {
+    color: var(--color-metallic-gold);
+    text-decoration: underline;
+}
+.auth-form-fields .terms-checkbox .checkbox-label a:hover {
+    color: var(--color-gold-highlight);
+}
+
+
+.auth-form-fields .form-button-integrated {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  color: white;
+  background-color: var(--color-crimson-red, #DC143C); /* Botón rojo como Cinemark */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  text-transform: uppercase;
+}
+.auth-form-fields .form-button-integrated:hover {
+  background-color: #b01030; /* Rojo más oscuro */
+  transform: translateY(-2px);
+}
+.auth-form-fields .form-button-integrated:disabled {
+    background-color: var(--color-charcoal-dark-grey);
+    color: var(--color-text-medium);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.auth-form-fields .form-link-integrated {
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--color-text-medium, #A0A0A0);
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.9rem;
+}
+.auth-form-fields .form-link-integrated a {
+  color: var(--color-metallic-gold, #B08D57);
+  font-weight: 600;
+  text-decoration: none;
+}
+.auth-form-fields .form-link-integrated a:hover {
+  text-decoration: underline;
+  color: var(--color-gold-highlight);
+}
+
+.auth-form-fields .form-error-integrated {
+  background-color: rgba(205, 101, 122, 0.688);
+  color: var(--color-crimson-red, #DC143C);
+  border: 1px solid rgba(220, 20, 60, 0.3);
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  border-radius: 6px;
+  text-align: left; /* Alinear texto del error a la izquierda */
+}
+
+/* Media Queries para el formulario integrado */
+@media (max-width: 768px) {
+  .auth-form-container.integrated-auth-form {
+    margin: 2rem auto;
+    padding: 2rem 1.5rem;
+  }
+  .form-row {
+    flex-direction: column; /* Apilar campos en móvil */
+    gap: 0; /* Quitar gap, el form-group-integrated ya tiene margin-bottom */
+  }
+  .form-row .form-group-integrated.half-width {
+    margin-bottom: 1.25rem; /* Restaurar margen para campos apilados */
+  }
+  .form-row .form-group-integrated.half-width:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+    .auth-form-container.integrated-auth-form {
+        padding: 1.5rem 1rem;
+    }
+    .auth-title-integrated {
+        font-size: 1.8rem;
+    }
+    .auth-subtitle-integrated {
+        font-size: 0.9rem;
+    }
+}

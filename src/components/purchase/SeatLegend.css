@@ -1,0 +1,48 @@
+/* src/components/purchase/SeatLegend.css */
+.seat-legend-container {
+  display: flex;
+  flex-wrap: wrap; /* Permitir que los items se envuelvan */
+  justify-content: center; /* Centrar items de la leyenda */
+  gap: 1rem 1.5rem; /* Espacio vertical y horizontal entre items */
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+  border-top: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.1));
+  border-bottom: 1px solid var(--color-border-subtle, rgba(176, 141, 87, 0.1));
+  font-family: var(--font-body);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre caja de color y etiqueta */
+}
+
+.legend-color-box {
+  width: 18px;
+  height: 15px;
+  border-radius: 4px 4px 1px 1px; /* Misma forma que los asientos */
+  border: 1px solid rgba(0,0,0,0.2);
+  display: inline-block;
+}
+
+.legend-label {
+  font-size: 0.8rem;
+  color: var(--color-text-medium, #A0A0A0);
+  /* color: #555; */ /* Si fondo general claro */
+}
+
+/* Media Queries para SeatLegend */
+@media (max-width: 768px) {
+  .seat-legend-container {
+    gap: 0.75rem 1rem;
+    padding: 0.75rem 0;
+    margin-bottom: 1rem;
+  }
+  .legend-color-box {
+    width: 16px;
+    height: 13px;
+  }
+  .legend-label {
+    font-size: 0.75rem;
+  }
+}

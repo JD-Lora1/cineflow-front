@@ -77,43 +77,42 @@
 }
 
 .cta-button {
-  font-family: var(--font-display);
-  background-color: var(--color-crimson-red);
+  font-family: var(--font-body); /* Mantenemos la fuente display */
+  background-color: var(--color-crimson-red, #DC143C);
   color: white;
-  padding: 0.8rem 2.5rem;
+  padding: 0.9rem 2.8rem; /* Un poco más de padding para mejor presencia */
   border: none;
-  border-radius: 5px; /* Bordes ligeramente redondeados */
-  font-size: 1.5rem;
-  letter-spacing: 1px;
+  border-radius: 6px; /* Bordes un poco más redondeados para un look moderno */
+  font-size: 1.4rem; /* Ajustar si es necesario */
+  letter-spacing: 1.5px; /* Espaciado para la fuente display */
   cursor: pointer;
-  transition: transform 0.2s ease-out, box-shadow 0.3s ease-out;
   text-transform: uppercase;
-  position: relative;
-  overflow: hidden; /* Para el efecto de brillo */
-  box-shadow: 0 0 10px rgba(220, 20, 60, 0.5), 0 0 20px rgba(220, 20, 60, 0.3);
+  position: relative; /* Necesario si decides mantener un pseudo-elemento para hover */
+  overflow: hidden; /* Útil si usas pseudo-elementos para efectos de fondo */
+  text-decoration: none; /* Si lo usas como <a> */
+  display: inline-block; /* Para que el padding y otras propiedades se apliquen bien */
+
+  /* Sombra más sutil y definida */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), /* Sombra general oscura */
+              0 2px 6px rgba(220, 20, 60, 0.3); /* Sombra de color sutil */
+
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Transición más suave */
+              background-color 0.2s ease-out,
+              box-shadow 0.2s ease-out;
 }
 
 .cta-button:hover {
-  transform: scale(1.05);
-  box-shadow: var(--neon-glow-red), 0 0 30px rgba(220, 20, 60, 0.5);
+  background-color: #c01232; /* Rojo un poco más oscuro al hacer hover */
+  transform: translateY(-3px); /* Elevación sutil */
+  /* Sombra ligeramente más pronunciada en hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25),
+              0 3px 8px rgba(220, 20, 60, 0.4);
 }
 
-.cta-button .button-shine { /* Efecto de brillo al pasar el mouse */
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.1);
-  transform: rotate(30deg);
-  transition: transform 0.5s ease;
-  pointer-events: none; /* No interfiere con el click */
-  opacity: 0;
-}
-
-.cta-button:hover .button-shine {
-  transform: rotate(30deg) translateX(30%) translateY(-10%);
-  opacity: 1;
+.cta-button:active { /* Efecto al hacer clic */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2),
+              0 1px 3px rgba(220, 20, 60, 0.3);
 }
 
 .scroll-indicator {
